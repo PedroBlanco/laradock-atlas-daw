@@ -205,6 +205,7 @@ services:
         - backend
       links:
         - docker-in-docker
+        - mariadb
 
 ### PHP-FPM ##############################################
     php-fpm:
@@ -309,6 +310,7 @@ services:
         - backend
       links:
         - docker-in-docker
+        - mariadb
 
 ### PHP Worker ############################################
     php-worker:
@@ -903,6 +905,8 @@ services:
       networks:
         - frontend
         - backend
+      links:
+        - mariadb
 
 ### Adminer ###########################################
     adminer:
