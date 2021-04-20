@@ -1,5 +1,9 @@
 version: '3.5'
 
+# 2021-04-15
+# Se van a arrancar los servicios:
+# nginx mariadb php-fpm phpmyadmin workspace
+
 networks:
   frontend:
     driver: ${NETWORKS_DRIVER}
@@ -22,6 +26,9 @@ volumes:
   neo4j:
     driver: ${VOLUMES_DRIVER}
   mariadb:
+    driver: ${VOLUMES_DRIVER}
+# 2021-04-14 Añadido por sugerencia de https://gist.github.com/ijaureguialzo/bf10504c742b44122ba62bfafe772c1c
+  mariadb_data:
     driver: ${VOLUMES_DRIVER}
   mongo:
     driver: ${VOLUMES_DRIVER}
@@ -536,7 +543,9 @@ services:
           - no_proxy
           - MARIADB_VERSION=${MARIADB_VERSION}
       volumes:
-        - ${DATA_PATH_HOST}/mariadb:/var/lib/mysql
+#        - ${DATA_PATH_HOST}/mariadb:/var/lib/mysql
+# 2021-04-14 Cambiado por sugerencia de https://gist.github.com/ijaureguialzo/bf10504c742b44122ba62bfafe772c1c
+        - mariadb_data:/var/lib/mysql
         - ${MARIADB_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
       ports:
         - "${MARIADB_PORT}:3306"
