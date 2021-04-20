@@ -1,3 +1,9 @@
+# Laradock-Atlas-DAW: Mi _fork de desarrollo_ de Laradock / My _development fork_ of Laradock
+
+Según [instrucciones](https://laradock.io/getting-started/#a-1-already-have-a-php-project) he hecho _fork_ del repositorio de (laradock/laradock) y lo he incluido como sub-módulo de mi repositorio principal.
+
+---
+
 <p align="center">
     <img src="/.github/home-page-images/laradock-logo.jpg?raw=true" alt="Laradock Logo"/>
 </p>
