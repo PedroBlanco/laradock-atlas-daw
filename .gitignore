@@ -26,6 +26,8 @@ docker-compose.custom.yml
 
 .DS_Store
 
+CNAME
+
 ### Copiado y modificado de https://stackoverflow.com/a/57749909/15662904
 ### VisualStudioCode ###
 .vscode/*
