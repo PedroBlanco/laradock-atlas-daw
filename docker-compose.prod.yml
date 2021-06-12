@@ -154,8 +154,7 @@ services:
         - backend
       links:
         - mariadb
-      restart_policy:
-        condition: none
+      restart: no
 
 ### PHP-FPM ##############################################
     php-fpm:
@@ -247,14 +246,13 @@ services:
       environment:
         - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
         - FAKETIME=${PHP_FPM_FAKETIME}
-      depends_on:
-        - workspace
+#      depends_on:
+#        - workspace
       networks:
         - backend
       links:
         - mariadb
-      restart_policy:
-        condition: on-failure
+      restart: unless-stopped
 
 ### NGINX Server #########################################
     nginx:
@@ -280,8 +278,7 @@ services:
       networks:
         - frontend
         - backend
-      restart_policy:
-        condition: on-failure
+      restart: unless-stopped
 
 ### MariaDB ##############################################
     mariadb:
@@ -308,8 +305,7 @@ services:
         - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
       networks:
         - backend
-      restart_policy:
-        condition: on-failure
+      restart: unless-stopped
 
 ### Adminer ###########################################
     adminer:
@@ -328,5 +324,4 @@ services:
       networks:
         - frontend
         - backend
-      restart_policy:
-        condition: on-failure
+      restart: unless-stopped
