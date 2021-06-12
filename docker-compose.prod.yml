@@ -154,6 +154,8 @@ services:
         - backend
       links:
         - mariadb
+      restart_policy:
+        condition: none
 
 ### PHP-FPM ##############################################
     php-fpm:
@@ -251,6 +253,8 @@ services:
         - backend
       links:
         - mariadb
+      restart_policy:
+        condition: on-failure
 
 ### NGINX Server #########################################
     nginx:
@@ -276,6 +280,8 @@ services:
       networks:
         - frontend
         - backend
+      restart_policy:
+        condition: on-failure
 
 ### MariaDB ##############################################
     mariadb:
@@ -302,6 +308,8 @@ services:
         - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
       networks:
         - backend
+      restart_policy:
+        condition: on-failure
 
 ### Adminer ###########################################
     adminer:
@@ -320,3 +328,5 @@ services:
       networks:
         - frontend
         - backend
+      restart_policy:
+        condition: on-failure
