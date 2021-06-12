@@ -154,7 +154,7 @@ services:
         - backend
       links:
         - mariadb
-      restart: no
+      restart: "no"
 
 ### PHP-FPM ##############################################
     php-fpm:
