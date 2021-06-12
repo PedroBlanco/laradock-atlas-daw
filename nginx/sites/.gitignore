@@ -1,2 +1,3 @@
 *.conf
 !default.conf
+!atlas.conf
