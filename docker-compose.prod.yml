@@ -1,8 +1,11 @@
 version: '3.5'
 
 # 2021-05-13
-# PRODUCCION- Se van a arrancar los servicios:
+# PRODUCCION - Se van a arrancar los servicios:
 # nginx mariadb php-fpm adminer workspace
+
+# 2021-06-12
+# PRODUCCION - He limpiado el archivo de líneas que no se van a usar
 
 networks:
   frontend:
