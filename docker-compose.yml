@@ -549,9 +549,9 @@ services:
 # 2021-04-14 Cambiado por sugerencia de https://gist.github.com/ijaureguialzo/bf10504c742b44122ba62bfafe772c1c
         - mariadb_data:/var/lib/mysql
         - ${MARIADB_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
-# 2021-05-13 PRODUCCION - Deshabilitamos el puerto; debería poderse acceder por la red backend
-      # ports:
-      #   - "${MARIADB_PORT}:3306"
+# 2021-05-13 PRODUCCION - Deshabilitaremos el puerto; debería poderse acceder por la red backend
+      ports:
+        - "${MARIADB_PORT}:3306"
       environment:
         - TZ=${WORKSPACE_TIMEZONE}
         - MYSQL_DATABASE=${MARIADB_DATABASE}
@@ -560,6 +560,8 @@ services:
         - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
       networks:
         - backend
+# 2021-06-14 PRODUCCION - Deshabilitaremos la red frontend; debería poderse acceder por la red backend
+        - frontend
 
 ### PostgreSQL ###########################################
 #     postgres:
