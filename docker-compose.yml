@@ -44,8 +44,9 @@ volumes:
   #   driver: ${VOLUMES_DRIVER}
   # caddy:
   #   driver: ${VOLUMES_DRIVER}
-  # meilisearch:
-  #   driver: ${VOLUMES_DRIVER}
+# 2021-06-17 Añado volumen propio de meilisearch para evitar datos fuera de docker
+  meilisearch_data:
+    driver: ${VOLUMES_DRIVER}
   # elasticsearch:
   #   driver: ${VOLUMES_DRIVER}
   # mosquitto:
@@ -311,6 +312,7 @@ services:
       links:
         # - docker-in-docker
         - mariadb
+        - meilisearch
 
 ### PHP Worker ############################################
 #     php-worker:
@@ -945,16 +947,16 @@ services:
 #         - frontend
 #         - backend
 
-# ### MeiliSearch ##########################################
-#     meilisearch:
-#       image: getmeili/meilisearch:latest
-#       volumes:
-#         - ${DATA_PATH_HOST}/meilisearch:/var/lib/meilisearch
-#       ports:
-#         - "${MEILISEARCH_HOST_PORT}:7700"
-#       networks:
-#         - frontend
-#         - backend
+### MeiliSearch ##########################################
+    meilisearch:
+      image: getmeili/meilisearch:latest
+      volumes:
+        - meilisearch_data:/var/lib/meilisearch
+      ports:
+        - "${MEILISEARCH_HOST_PORT}:7700"
+      networks:
+        - frontend
+        - backend
 
 # ### ElasticSearch ########################################
 #     elasticsearch:

@@ -22,7 +22,10 @@ volumes:
     driver: ${VOLUMES_DRIVER}
   adminer:
     driver: ${VOLUMES_DRIVER}
-
+# 2021-06-17 Añado volumen propio de meilisearch para evitar datos fuera de docker
+  meilisearch_data:
+    driver: ${VOLUMES_DRIVER}
+      
 
 services:
 
@@ -256,6 +259,7 @@ services:
         - backend
       links:
         - mariadb
+        - meilisearch
       restart: unless-stopped
 
 ### NGINX Server #########################################
@@ -335,3 +339,16 @@ services:
         - frontend
         - backend
       restart: unless-stopped
+
+### MeiliSearch ##########################################
+meilisearch:
+  container_name: ${COMPOSE_PROJECT_NAME}_meilisearch
+  hostname: ${COMPOSE_PROJECT_NAME}_meilisearch
+  image: getmeili/meilisearch:latest
+  volumes:
+    - meilisearch_data:/var/lib/meilisearch
+  ports:
+    - "${MEILISEARCH_HOST_PORT}:7700"
+  networks:
+    - backend
+  restart: unless-stopped
