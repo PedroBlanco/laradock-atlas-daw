@@ -210,6 +210,8 @@ services:
 
 ### PHP-FPM ##############################################
     php-fpm:
+      container_name: ${COMPOSE_PROJECT_NAME}_php-fpm
+      hostname: ${COMPOSE_PROJECT_NAME}_php-fpm
       build:
         context: ./php-fpm
         args:
@@ -397,6 +399,8 @@ services:
 
 ### NGINX Server #########################################
     nginx:
+      container_name: ${COMPOSE_PROJECT_NAME}_nginx
+      hostname: ${COMPOSE_PROJECT_NAME}_nginx
       build:
         context: ./nginx
         args:
@@ -539,6 +543,8 @@ services:
 
 ### MariaDB ##############################################
     mariadb:
+      container_name: ${COMPOSE_PROJECT_NAME}_mariadb
+      hostname: ${COMPOSE_PROJECT_NAME}_mariadb
       build:
         context: ./mariadb
         args:
@@ -915,6 +921,8 @@ services:
 
 ### Adminer ###########################################
     adminer:
+      container_name: ${COMPOSE_PROJECT_NAME}_adminer
+      hostname: ${COMPOSE_PROJECT_NAME}_adminer
       build:
         context: ./adminer
         args:
@@ -949,6 +957,8 @@ services:
 
 ### MeiliSearch ##########################################
     meilisearch:
+      container_name: ${COMPOSE_PROJECT_NAME}_meilisearch
+      hostname: ${COMPOSE_PROJECT_NAME}_meilisearch
       image: getmeili/meilisearch:latest
       volumes:
         - meilisearch_data:/var/lib/meilisearch
