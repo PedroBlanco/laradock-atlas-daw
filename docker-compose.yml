@@ -63,6 +63,8 @@ volumes:
   #   driver: ${VOLUMES_DRIVER}
   # react:
   #   driver: ${VOLUMES_DRIVER}
+  expose_data:
+    driver: ${VOLUMES_DRIVER}
 
 services:
 
@@ -1976,3 +1978,17 @@ services:
 #       volumes:
 #         - ./react:/usr/src/app/react
 #         - /usr/src/app/react/node_modules
+
+# ### expose ####################################################
+# expose:
+#   image: beyondcodegmbh/expose-server:latest
+#   ports:
+#     - 8080:${EXPOSE_PORT}
+#   environment:
+#     port: ${EXPOSE_PORT}
+#     domain: ${EXPOSE_DOMAIN}
+#     username: ${EXPOSE_ADMIN_USER}
+#     password: ${EXPOSE_ADMIN_PASSWORD}
+#   restart: always
+#   volumes:
+#     - ./database/expose.db:/root/.expose
